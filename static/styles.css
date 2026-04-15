@@ -1,0 +1,20 @@
+body {
+    background: #0f172a;
+    color: white;
+    font-family: Arial;
+}
+
+nav {
+    padding: 20px;
+}
+
+nav a {
+    margin-right: 15px;
+    color: #38bdf8;
+    text-decoration: none;
+}
+
+.hero {
+    text-align: center;
+    margin-top: 100px;
+}
