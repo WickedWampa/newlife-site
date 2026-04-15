@@ -1,12 +1,16 @@
+from pathlib import Path
+
 from fastapi import FastAPI, Request, Form
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
+BASE_DIR = Path(__file__).resolve().parent
+
 app = FastAPI()
 
-app.mount("/static", StaticFiles(directory="static"), name="static")
-templates = Jinja2Templates(directory="templates")
+app.mount("/static", StaticFiles(directory=BASE_DIR / "static"), name="static")
+templates = Jinja2Templates(directory=str(BASE_DIR / "templates"))
 
 @app.get("/", response_class=HTMLResponse)
 def home(request: Request):
@@ -21,6 +25,10 @@ def contact(request: Request):
     return templates.TemplateResponse("contact.html", {"request": request})
 
 @app.post("/contact")
-def contact_submit(name: str = Form(...), email: str = Form(...), message: str = Form(...)):
+def contact_submit(
+    name: str = Form(...),
+    email: str = Form(...),
+    message: str = Form(...)
+):
     print(name, email, message)
     return {"status": "submitted"}
