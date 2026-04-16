@@ -1,23 +1,116 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Contact</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page_title }}</title>
     <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-<nav>
-    <a href="/">Home</a>
-    <a href="/services">Services</a>
-    <a href="/contact">Contact</a>
-</nav>
+    <header class="site-header">
+        <div class="container nav-wrap">
+            <a class="brand" href="/">
+                <span class="brand-mark">NL</span>
+                <span>New Life Sober Living</span>
+            </a>
 
-<h1>Contact Us</h1>
-<form method="post" action="/contact">
-    <input name="name" placeholder="Name"><br>
-    <input name="email" placeholder="Email"><br>
-    <textarea name="message"></textarea><br>
-    <button type="submit">Send</button>
-</form>
+            <nav class="nav">
+                <a href="/">Home</a>
+                <a href="/services">Services</a>
+                <a href="/contact">Contact</a>
+            </nav>
+        </div>
+    </header>
 
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <p class="eyebrow">Contact</p>
+                <h1>Start the conversation.</h1>
+                <p class="page-hero-text">
+                    Use this page for questions, availability, referrals, or general information.
+                </p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container contact-grid">
+                <div class="info-card large-card">
+                    <h3>Get in touch</h3>
+
+                    {% if sent %}
+                    <div class="success-box">
+                        Thanks — your message was submitted.
+                    </div>
+                    {% endif %}
+
+                    <form method="post" action="/contact" class="contact-form">
+                        <label for="name">Name</label>
+                        <input id="name" name="name" type="text" placeholder="Your name" required>
+
+                        <label for="email">Email</label>
+                        <input id="email" name="email" type="email" placeholder="you@example.com" required>
+
+                        <label for="phone">Phone</label>
+                        <input id="phone" name="phone" type="text" placeholder="Optional">
+
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="How can we help?" required></textarea>
+
+                        <button type="submit" class="btn btn-primary btn-full">Send message</button>
+                    </form>
+                </div>
+
+                <div class="contact-side">
+                    <div class="info-card">
+                        <h3>Direct contact</h3>
+                        <p><strong>Phone:</strong> replace with real number</p>
+                        <p><strong>Email:</strong> replace with real email</p>
+                        <p><strong>Location:</strong> North Attleboro, MA</p>
+                    </div>
+
+                    <div class="info-card">
+                        <h3>Good fit for this page</h3>
+                        <ul class="check-list">
+                            <li>Availability questions</li>
+                            <li>Referral inquiries</li>
+                            <li>General house information</li>
+                            <li>Questions from family members or support networks</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div>
+                <div class="brand footer-brand">
+                    <span class="brand-mark">NL</span>
+                    <span>New Life Sober Living</span>
+                </div>
+                <p class="footer-copy">
+                    Recovery-focused sober living with structure, support, and accountability.
+                </p>
+            </div>
+
+            <div>
+                <h4>Pages</h4>
+                <ul class="footer-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/services">Services</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4>Contact</h4>
+                <ul class="footer-links">
+                    <li>North Attleboro, MA</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
