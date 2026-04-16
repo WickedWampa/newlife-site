@@ -14,15 +14,15 @@ templates = Jinja2Templates(directory=str(BASE_DIR / "templates"))
 
 @app.get("/", response_class=HTMLResponse)
 def home(request: Request):
-    return templates.TemplateResponse("home.html", {"request": request})
+    return templates.TemplateResponse(request, "home.html")
 
 @app.get("/services", response_class=HTMLResponse)
 def services(request: Request):
-    return templates.TemplateResponse("services.html", {"request": request})
+    return templates.TemplateResponse(request, "services.html")
 
 @app.get("/contact", response_class=HTMLResponse)
 def contact(request: Request):
-    return templates.TemplateResponse("contact.html", {"request": request})
+    return templates.TemplateResponse(request, "contact.html")
 
 @app.post("/contact")
 def contact_submit(
