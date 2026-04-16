@@ -15,36 +15,45 @@ templates = Jinja2Templates(directory=str(BASE_DIR / "templates"))
 
 @app.get("/", response_class=HTMLResponse)
 def home(request: Request):
-    return templates.TemplateResponse(request, "home.html", {
-        "page_title": "New Life Sober Living"
-    })
+    return templates.TemplateResponse(
+        request,
+        "home.html",
+        {"page_title": "New Life Sober Living | North Attleboro, MA"},
+    )
 
 
 @app.get("/services", response_class=HTMLResponse)
 def services(request: Request):
-    return templates.TemplateResponse(request, "services.html", {
-        "page_title": "Services | New Life Sober Living"
-    })
+    return templates.TemplateResponse(
+        request,
+        "services.html",
+        {"page_title": "Services | New Life Sober Living"},
+    )
 
 
 @app.get("/contact", response_class=HTMLResponse)
 def contact(request: Request, sent: str | None = None):
-    return templates.TemplateResponse(request, "contact.html", {
-        "page_title": "Contact | New Life Sober Living",
-        "sent": sent == "1"
-    })
+    return templates.TemplateResponse(
+        request,
+        "contact.html",
+        {
+            "page_title": "Contact | New Life Sober Living",
+            "sent": sent == "1",
+        },
+    )
 
 
 @app.post("/contact")
 def contact_submit(
     name: str = Form(...),
+    phone: str = Form(...),
     email: str = Form(...),
-    phone: str = Form(""),
-    message: str = Form(...)
+    message: str = Form(...),
 ):
-    print("CONTACT FORM SUBMISSION")
+    print("NEW LIFE CONTACT FORM")
     print("Name:", name)
-    print("Email:", email)
     print("Phone:", phone)
+    print("Email:", email)
     print("Message:", message)
+
     return RedirectResponse(url="/contact?sent=1", status_code=303)
